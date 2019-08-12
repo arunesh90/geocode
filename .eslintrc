@@ -1,0 +1,10 @@
+{
+  "extends": ["@lightbase/eslint-config-lightbase"],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "rules": {
+    "@typescript-eslint/no-unnecessary-type-assertion": 1,
+    "@typescript-eslint/explicit-member-accessibility": 0
+  }
+}
