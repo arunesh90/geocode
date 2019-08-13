@@ -1,22 +1,24 @@
-# https://cirrus-ci.org/guide/docker-builder-vm/
-# Run seeder as a full test with docker-compose
-# Use Docker image
+container:
+  image: node:12
 
-jest_test_task:
+task:
+  name: test
   node_modules_cache:
     folder: node_modules
     fingerprint_script: cat yarn.lock
     populate_script: yarn install
   test_script: yarn test
 
-lint_task:
+task:
+  name: lint
   node_modules_cache:
     folder: node_modules
     fingerprint_script: cat yarn.lock
     populate_script: yarn install
   lint_script: yarn lint:fix
 
-build_task:
+task:
+  name: build
   node_modules_cache:
     folder: node_modules
     fingerprint_script: cat yarn.lock
@@ -26,6 +28,7 @@ build_task:
 # Note: Although this task will take a while, it's the easiest way to check if it runs and to later add
 # some checks if the resulting table is 'correct' or not
 docker_builder:
+  name: Seeder test
   depends_on:
     - lint
     - build
