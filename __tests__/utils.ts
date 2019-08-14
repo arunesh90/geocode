@@ -41,5 +41,5 @@ test("uuid", () => {
 
 test("promisifyExecCommand", () => {
   expect(promisifyExecCommand(log, "ls")).resolves.toHaveProperty("stderr");
-  expect(promisifyExecCommand(log, "ls", { encoding: "utf-8" }, true)).resolves.toHaveProperty("stderr");
+  expect(promisifyExecCommand(log, "ls", { encoding: "utf-8" }, true)).resolves.toHaveProperty("stdout");
 });

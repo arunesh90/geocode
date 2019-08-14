@@ -1,5 +1,6 @@
 import { log } from "@lightbase/logger";
 import { getApp } from "./server";
+import { mountRouter } from "./server/router";
 import { init } from "./shared";
 
 /**
@@ -10,6 +11,7 @@ async function main() {
   init(["NODE_ENV", "SERVER_PORT", "DB_HOST", "DB_USER", "DB_PASSWORD", "DB_NAME"]);
 
   const app = await getApp();
+  mountRouter(app);
   app.listen(Number(process.env.SERVER_PORT), "0.0.0.0");
 }
 

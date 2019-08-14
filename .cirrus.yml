@@ -33,5 +33,7 @@ docker_builder:
     - lint
     - build
     - test
-  start_compose_script: docker-compose up -d
-  run_seeder_script: docker run --rm --network host -v $PWD/:/app --workdir=/app node:latest sh -c "yarn && yarn run:seeder"
+  start_compose_script: docker run --rm --network host -e "POSTGRES_USER=geocode" -e "POSTGRES_PASSWORD=geocode" -e "POSTGRES_DATABASE=geocode" -p 5432:5432 -d postgres:11
+  install_script: docker run --rm --network host -v $PWD/:/app --workdir=/app node:latest sh -c "yarn"
+  run_seeder_script: docker run --rm --network host -v $PWD/:/app --workdir=/app node:latest sh -c "yarn run:seeder"
+  test_e2e_script: docker run --rm --network host -v $PWD/:/app --workdir=/app node:latest sh -c "yarn test:e2e"
